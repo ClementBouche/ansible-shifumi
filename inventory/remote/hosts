@@ -1,5 +1,5 @@
 [all]
-shifumi-app ansible_host=shifumi ansible_connection=ssh
+shifumi-app ansible_host=shifumi ansible_connection=ssh ansible_user=cbouche
 
 [front]
 shifumi-app

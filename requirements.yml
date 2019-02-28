@@ -3,11 +3,11 @@
 #   version: tag name
 #   name: ansible repo
 
-# from galaxy
-# nodejs lastest
+# geerlingguy.nodejs from galaxy
 - src: geerlingguy.nodejs
 
-# from galaxy
-# pm2 managament
+# weareinteractive.pm2 from galaxy
 - src: weareinteractive.pm2
 
+# robertdebock.npm from galaxy
+- src: robertdebock.npm

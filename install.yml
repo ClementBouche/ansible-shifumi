@@ -4,9 +4,9 @@
   become: yes
   become_method: sudo
   roles:
+    - robertdebock.npm
     - geerlingguy.nodejs
     - weareinteractive.pm2
-    - shifumi.pm2
   # shared var files
   vars_files:
     - inventory/shared/nodejs.yml
@@ -17,3 +17,5 @@
         msg: "Nodejs {{ nodejs_version }} is ready"
     - debug:
         msg: "pm2 is ready with user {{ pm2_user }}"
+    - name: "Update npm package"
+      shell: npm install -g npm

@@ -13,9 +13,6 @@
     dest: /var/www/shifumi-api
     version: "{{ shifumi_api_version }}"
 
-#-------------------------------------------------------------------------------
-# Restart pm2 TODO deplacer
-#-------------------------------------------------------------------------------
-
-- name: "Restart pm2"
-  shell: "pm2 start all"
+- name: "npm install"
+  npm:
+    path: /var/www/shifumi-api

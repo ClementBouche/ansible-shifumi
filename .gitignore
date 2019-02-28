@@ -2,4 +2,5 @@
 /*.retry
 
 /roles/geerlingguy.nodejs
+/roles/robertdebock.npm
 /roles/weareinteractive.pm2
