@@ -1,0 +1,8 @@
+[all]
+localhost ansible_host=localhost ansible_connection=local ansible_user=user
+
+[front]
+localhost
+
+[back]
+localhost

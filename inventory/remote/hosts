@@ -1,0 +1,8 @@
+[all]
+shifumi-app ansible_host=shifumi ansible_connection=ssh
+
+[front]
+shifumi-app
+
+[back]
+shifumi-app

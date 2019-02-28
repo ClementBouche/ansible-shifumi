@@ -1,0 +1,3 @@
+# - src: git repository
+#   version: tag name
+#   name: ansible repo
