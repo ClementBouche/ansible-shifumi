@@ -1,0 +1,3 @@
+# shared variables
+shifumi_api_repo: https://github.com/ClementBouche/shifumi-api.git
+shifumi_api_version: v0.0.1

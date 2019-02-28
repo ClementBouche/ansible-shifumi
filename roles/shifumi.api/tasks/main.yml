@@ -6,3 +6,16 @@
 
 - debug: 
     msg: Start shifumi api install/update
+
+- name: "Install shifumi-api version {{ shifumi_api_version }}"
+  git:
+    repo: "{{ shifumi_api_repo }}"
+    dest: /var/www/shifumi-api
+    version: "{{ shifumi_api_version }}"
+
+#-------------------------------------------------------------------------------
+# Restart pm2 TODO deplacer
+#-------------------------------------------------------------------------------
+
+- name: "Restart pm2"
+  shell: "pm2 start all"
