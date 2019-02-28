@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+        "name": "api",
+        "cwd": "/var/www/bgapi/",
+        "script": "/var/www/bgapi/server.js"
+    }
+  ]
+}

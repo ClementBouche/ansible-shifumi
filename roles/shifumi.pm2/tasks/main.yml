@@ -1,0 +1,28 @@
+---
+
+#-------------------------------------------------------------------------------
+# Create pm2 process file
+#-------------------------------------------------------------------------------
+
+- name: Ensures /var/ansible/shifumi.pm2/ dir exists
+  file: 
+    path: /var/ansible/shifumi.pm2/
+    state: directory
+
+- name: "Update or create pm2 process file apps.json"
+  template:
+    dest: /var/ansible/shifumi.pm2/apps.json
+    src: var/ansible/shifumi.pm2/apps.json
+
+#-------------------------------------------------------------------------------
+# Start pm2 process file
+#-------------------------------------------------------------------------------
+
+- name: "Start"
+  shell: "pm2 start /var/ansible/shifumi.pm2/apps.json"
+
+- name: "Show pm2 status"
+  shell: "pm2 ls"
+  register: status
+
+- debug: var=status.stdout_lines
