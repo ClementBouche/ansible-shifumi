@@ -1,2 +1,5 @@
 /inventory/localhost
 /*.retry
+
+/roles/geerlingguy.nodejs
+/roles/weareinteractive.pm2

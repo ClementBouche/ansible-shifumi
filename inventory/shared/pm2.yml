@@ -1,0 +1,4 @@
+# values from weareinteractive.pm2
+pm2_service_name: pm2-root
+# pm2_user: www-data
+pm2_user: "{{ ansible_user_id }}"

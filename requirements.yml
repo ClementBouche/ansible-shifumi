@@ -1,3 +1,13 @@
+# please see https://docs.ansible.com/ansible/latest/reference_appendices/galaxy.html
 # - src: git repository
 #   version: tag name
 #   name: ansible repo
+
+# from galaxy
+# nodejs lastest
+- src: geerlingguy.nodejs
+
+# from galaxy
+# pm2 managament
+- src: weareinteractive.pm2
+

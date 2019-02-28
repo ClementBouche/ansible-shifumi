@@ -1,0 +1,18 @@
+---
+
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - geerlingguy.nodejs
+    - weareinteractive.pm2
+  # shared var files
+  vars_files:
+    - inventory/shared/nodejs.yml
+    - inventory/shared/pm2.yml
+  # tasks will be executed after roles
+  tasks:
+    - debug:
+        msg: "Nodejs {{ nodejs_version }} is ready"
+    - debug:
+        msg: "pm2 is ready with user {{ pm2_user }}"
