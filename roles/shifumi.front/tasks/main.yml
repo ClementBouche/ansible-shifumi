@@ -5,4 +5,35 @@
 #-------------------------------------------------------------------------------
 
 - debug: 
-    msg: Start shifumi front install/update
+    msg: Start shifumi font install/update
+
+- name: Ensures /var/shifumi/ dir exists
+  file: 
+    path: /var/shifumi/
+    state: directory
+
+- name: "Install shifumi-api version {{ shifumi_app_version }}"
+  git:
+    repo: "{{ shifumi_app_repo }}"
+    dest: /var/shifumi
+    version: "{{ shifumi_app_version }}"
+
+- name: "npm install"
+  npm:
+    path: /var/shifumi
+
+#-------------------------------------------------------------------------------
+# ng build options
+# --base-href / --configuration={{ shifumi_app_env }}
+#-------------------------------------------------------------------------------
+
+- name: "ng build {{ shifumi_app_env }}"
+  shell: "/var/shifumi/node_modules/@angular/cli/bin/ng build --prod"
+  args:
+    chdir: /var/shifumi
+
+- name: "Create symbolic link"
+  file:
+    src: "/var/shifumi/dist/shifumi/"
+    dest: "/var/www/shifumi"
+    state: link

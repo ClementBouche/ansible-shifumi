@@ -7,3 +7,6 @@
     - shifumi.api
     - shifumi.pm2
     - shifumi.front
+  tasks:
+    - name: "Restart nginx"
+      service: name=nginx state=reloaded

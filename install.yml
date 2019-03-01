@@ -4,12 +4,13 @@
   become: yes
   become_method: sudo
   roles:
-    - robertdebock.npm
     - geerlingguy.nodejs
+    - geerlingguy.nginx
     - weareinteractive.pm2
   # shared var files
   vars_files:
     - inventory/shared/nodejs.yml
+    - inventory/shared/nginx.yml
     - inventory/shared/pm2.yml
   # tasks will be executed after roles
   tasks:

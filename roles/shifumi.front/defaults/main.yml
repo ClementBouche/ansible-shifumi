@@ -1,0 +1,4 @@
+# shared variables
+shifumi_app_repo: https://github.com/ClementBouche/shifumi.git
+shifumi_app_version: v0.0.1
+shifumi_app_env: prod
