@@ -1,0 +1,40 @@
+---
+
+#-------------------------------------------------------------------------------
+# Configuration de mongodb
+#-------------------------------------------------------------------------------
+
+- name: Add mongodb apt key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 9DA31620334BD75D9DCB49F368818C72E52529D4
+    state: present
+
+- name: Add source list
+  apt_repository:
+    repo: "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/{{ mongodb_version }} multiverse"
+    state: present
+    filename: "mongodb-org-{{ mongodb_version }}"
+
+#-------------------------------------------------------------------------------
+# Installation de mongodb-org
+#-------------------------------------------------------------------------------
+
+- name: Install mongodb-org package
+  apt:
+    name: mongodb-org
+    state: present
+    update_cache: true
+
+#-------------------------------------------------------------------------------
+# Test mongodb (client)
+#-------------------------------------------------------------------------------
+
+- name: Get mongo version
+  command: mongo --version
+  register: mongo_test_version
+
+- debug: msg="mongo version = {{ mongo_test_version.stdout }}"
+
+- name: Ensure mongodb (mongod) is started and enabled to start at boot.
+  service: name=mongod state=started enabled=yes
