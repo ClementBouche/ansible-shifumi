@@ -7,7 +7,7 @@
     - geerlingguy.nodejs
     - geerlingguy.nginx
     - weareinteractive.pm2
-    - shifumi.mongodb
+    # - shifumi.mongodb
   # shared var files
   vars_files:
     - inventory/shared/nodejs.yml

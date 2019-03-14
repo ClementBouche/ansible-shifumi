@@ -17,6 +17,7 @@
     repo: "{{ shifumi_app_repo }}"
     dest: /var/shifumi
     version: "{{ shifumi_app_version }}"
+    force: yes
 
 - name: "npm install"
   npm:
