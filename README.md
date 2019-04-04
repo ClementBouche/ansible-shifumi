@@ -54,14 +54,20 @@ ansible-playbook -i inventory/remote test-echo.yml
 ansible -i inventory/remote all -a "echo ShiFuMi"
 ```
 
-
-## Import roles
+### Import roles
 
 ```bash
 ansible-galaxy install -r requirements.yml -p roles --force
 ```
 
 ## Scripts
+
+### Install / Update Soft
+
+```bash
+ansible-playbook -i inventory/remote install.yml --ask-vault
+```
+
 
 ### Deploy webapp
 

@@ -6,6 +6,7 @@
 # geerlingguy from galaxy
 - src: geerlingguy.nodejs
 - src: geerlingguy.nginx
+- src: geerlingguy.certbot
 
 # weareinteractive.pm2 from galaxy
 - src: weareinteractive.pm2

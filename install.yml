@@ -6,10 +6,12 @@
   roles:
     - geerlingguy.nodejs
     - geerlingguy.nginx
+    - geerlingguy.certbot
     - weareinteractive.pm2
     # - shifumi.mongodb
   # shared var files
   vars_files:
+    - inventory/shared/certbot.yml
     - inventory/shared/nodejs.yml
     - inventory/shared/nginx.yml
     - inventory/shared/pm2.yml

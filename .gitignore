@@ -1,7 +1,6 @@
 /inventory/localhost
 /*.retry
 
-/roles/geerlingguy.nodejs
-/roles/geerlingguy.nginx
-/roles/robertdebock.npm
-/roles/weareinteractive.pm2
+/roles/geerlingguy.*
+/roles/robertdebock.*
+/roles/weareinteractive.*
