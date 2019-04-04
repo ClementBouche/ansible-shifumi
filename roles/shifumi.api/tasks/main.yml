@@ -17,3 +17,6 @@
 - name: "npm install"
   npm:
     path: /var/www/shifumi-api
+
+- name: "Restart PM2"
+  shell: "pm2 restart all"

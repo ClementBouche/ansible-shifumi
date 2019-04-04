@@ -60,3 +60,11 @@ ansible -i inventory/remote all -a "echo ShiFuMi"
 ```bash
 ansible-galaxy install -r requirements.yml -p roles --force
 ```
+
+## Scripts
+
+### Deploy webapp
+
+```bash
+ansible-playbook -i inventory/remote webapp.yml
+```
