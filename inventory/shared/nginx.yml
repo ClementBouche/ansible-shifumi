@@ -2,14 +2,15 @@
 # nginx_user: "nginx"
 nginx_vhosts:
   - listen: "80"
-    server_name: "cbouche.me"
+    server_name: "default"
     extra_parameters: |
           # redirection to https
           if ($host = cbouche.me) {
               return 301 https://$host$request_uri;
           } # managed by Certbot
-          listen 80;
+          
           return 404; # managed by Certbot
+
   - listen: "443 ssl"
     server_name: "cbouche.me"
     root: "/var/www/shifumi"
@@ -28,6 +29,7 @@ nginx_vhosts:
             proxy_read_timeout 240s;
             proxy_cache_bypass $http_upgrade;
           }
+
           # swagger documentation
           location /docs/ {
             proxy_set_header Host $http_host;
@@ -39,10 +41,12 @@ nginx_vhosts:
             proxy_read_timeout 240s;
             proxy_cache_bypass $http_upgrade;
           }
+
           # angular application build
           location / {
             try_files $uri $uri/ /index.html;
           }
+
           # certificate information
           # managed by Certbot
           ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;

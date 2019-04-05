@@ -4,8 +4,8 @@
   become: yes
   become_method: sudo
   roles:
-    - shifumi.api
     - shifumi.pm2
+    - shifumi.api
     - shifumi.front
   tasks:
     - name: "Restart nginx"
