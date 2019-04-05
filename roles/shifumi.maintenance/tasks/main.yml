@@ -1,0 +1,15 @@
+---
+
+#-------------------------------------------------------------------------------
+# Create maintenance page
+#-------------------------------------------------------------------------------
+
+- name: Ensures /var/www/maintenance/ dir exists
+  file: 
+    path: /var/www/maintenance/
+    state: directory
+
+- name: "Update or create maintenance/index.html file"
+  template:
+    dest: /var/www/maintenance/index.html
+    src: index.html

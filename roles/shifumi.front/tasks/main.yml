@@ -12,7 +12,7 @@
     path: /var/shifumi/
     state: directory
 
-- name: "Install shifumi-api version {{ shifumi_app_version }}"
+- name: "Install shifumi-front version {{ shifumi_app_version }}"
   git:
     repo: "{{ shifumi_app_repo }}"
     dest: /var/shifumi

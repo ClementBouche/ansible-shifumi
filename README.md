@@ -72,5 +72,5 @@ ansible-playbook -i inventory/remote install.yml --ask-vault
 ### Deploy webapp
 
 ```bash
-ansible-playbook -i inventory/remote webapp.yml
+ansible-playbook -i inventory/remote webapp.yml --ask-vault
 ```
