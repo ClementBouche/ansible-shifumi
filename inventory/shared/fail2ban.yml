@@ -1,0 +1,4 @@
+# https://galaxy.ansible.com/oefenweb/fail2ban
+fail2ban_ignoreips: [127.0.0.1/8, 192.134.133.9]
+fail2ban_bantime: 86400 # une journée
+fail2ban_maxretry: 3

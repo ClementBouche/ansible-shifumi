@@ -4,6 +4,9 @@ nginx_vhosts:
   - listen: "80"
     server_name: "default"
     extra_parameters: |
+          # hide nginx version
+          server_tokens off;
+
           # redirection to https
           if ($host = cbouche.me) {
               return 301 https://$host$request_uri;

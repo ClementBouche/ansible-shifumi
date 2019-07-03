@@ -9,5 +9,8 @@
 - src: geerlingguy.certbot
 - src: geerlingguy.php
 
+# oefenweb.fail2ban
+- src: oefenweb.fail2ban
+
 # weareinteractive.pm2 from galaxy
 - src: weareinteractive.pm2

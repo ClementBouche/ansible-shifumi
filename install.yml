@@ -8,6 +8,7 @@
     - geerlingguy.nginx
     - geerlingguy.nodejs
     - geerlingguy.php
+    - oefenweb.fail2ban
     - shifumi.shaarli
     - shifumi.maintenance
     # - shifumi.mongodb
@@ -18,6 +19,7 @@
   # shared var files
   vars_files:
     - inventory/shared/certbot.yml
+    - inventory/shared/fail2ban.yml
     - inventory/shared/nginx.yml
     - inventory/shared/nodejs.yml
     - inventory/shared/php.yml
