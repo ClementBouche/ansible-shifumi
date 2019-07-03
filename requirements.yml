@@ -7,6 +7,7 @@
 - src: geerlingguy.nodejs
 - src: geerlingguy.nginx
 - src: geerlingguy.certbot
+- src: geerlingguy.php
 
 # weareinteractive.pm2 from galaxy
 - src: weareinteractive.pm2

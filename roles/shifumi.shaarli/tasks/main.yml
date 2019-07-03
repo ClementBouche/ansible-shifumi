@@ -1,0 +1,35 @@
+---
+
+#-------------------------------------------------------------------------------
+# Shaarli
+#-------------------------------------------------------------------------------
+
+- debug: 
+    msg: "Start shaarli installation"
+
+- name: Ensures /var/shaarli dir exists
+  file: 
+    path: /var/shaarli
+    state: directory
+
+- name: "Install shaarli version {{ shaarli_version }}"
+  get_url:
+    url: "https://github.com/shaarli/Shaarli/releases/download/{{ shaarli_version }}/shaarli-{{ shaarli_version }}-full.zip"
+    dest: "/var/shaarli/shaarli-{{ shaarli_version }}-full.zip"
+    force: yes
+
+- name: Unarchive a file that is already on the remote machine
+  unarchive:
+    src: "/var/shaarli/shaarli-{{ shaarli_version }}-full.zip"
+    dest: /var/www
+    remote_src: yes
+
+## TODO change /var/www/Shaarli ownership to www-data
+- name: Change file ownership, group and permissions
+  file:
+    path: /var/www/Shaarli
+    state: directory
+    owner: www-data
+    group: www-data
+    recurse: yes
+#    mode: '0644'

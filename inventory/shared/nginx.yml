@@ -13,11 +13,21 @@ nginx_vhosts:
 
   - listen: "443 ssl"
     server_name: "cbouche.me"
-    root: "/var/www/shifumi"
+    root: "/var/www"
     index: "index.html"
     access_log: "/var/log/nginx/shifumi.access.log"
-    error_log: "/var/log/nginx/shifumi.access.log"
+    error_log: "/var/log/nginx/shifumi.error.log"
     extra_parameters: |
+          # hide nginx version
+          server_tokens off;
+
+          # shaarli
+          location /Shaarli/ {
+            try_files $uri /Shaarli/index.php$is_args$args;
+            access_log /var/log/nginx/shaarli.access.log;
+            error_log  /var/log/nginx/shaarli.error.log;
+          }
+
           # express nodejs API
           location /api/ {
             proxy_set_header Host $http_host;
@@ -44,7 +54,17 @@ nginx_vhosts:
 
           # angular application build
           location / {
+            root /var/www/shifumi;
             try_files $uri $uri/ /index.html;
+          }
+
+          # php application
+          location ~(index)\.php$ {
+            try_files $uri =404;
+            fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
           }
 
           # certificate information

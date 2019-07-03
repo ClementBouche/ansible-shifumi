@@ -7,14 +7,20 @@
     - geerlingguy.certbot
     - geerlingguy.nginx
     - geerlingguy.nodejs
+    - geerlingguy.php
+    - shifumi.shaarli
     - shifumi.maintenance
     # - shifumi.mongodb
     - weareinteractive.pm2
+    - shifumi.pm2
+    - shifumi.api
+    - shifumi.front
   # shared var files
   vars_files:
     - inventory/shared/certbot.yml
     - inventory/shared/nginx.yml
     - inventory/shared/nodejs.yml
+    - inventory/shared/php.yml
     - inventory/shared/pm2.yml
     - inventory/shared/shifumi.yml
   # tasks will be executed after roles

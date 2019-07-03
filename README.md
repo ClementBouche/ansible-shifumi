@@ -65,12 +65,20 @@ ansible-galaxy install -r requirements.yml -p roles --force
 ### Install / Update Soft
 
 ```bash
-ansible-playbook -i inventory/remote install.yml --ask-vault
+ansible-playbook -i inventory/remote install.yml --ask-become-pass
 ```
-
 
 ### Deploy webapp
 
 ```bash
-ansible-playbook -i inventory/remote webapp.yml --ask-vault
+ansible-playbook -i inventory/remote webapp.yml --ask-become-pass
+```
+
+### Do other stuff
+
+- Create a custom ansible playbook `custom.yml`
+- run on `local` or `remote`
+
+```bash
+ansible-playbook -i inventory/remote custom.yml --ask-become-pass
 ```

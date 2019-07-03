@@ -4,7 +4,6 @@
   become: yes
   become_method: sudo
   roles:
-    - shifumi.pm2
     - shifumi.api
     - shifumi.front
   tasks:
