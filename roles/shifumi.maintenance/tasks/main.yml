@@ -6,10 +6,18 @@
 
 - name: Ensures /var/www/maintenance/ dir exists
   file: 
-    path: /var/www/maintenance/
+    path: /var/maintenance/
     state: directory
 
-- name: "Update or create maintenance/index.html file"
-  template:
-    dest: /var/www/maintenance/index.html
-    src: index.html
+- name: "Install shifumi-maintenance version {{ shifumi_maintenance_version }}"
+  git:
+    repo: "{{ shifumi_maintenance_repo }}"
+    dest: /var/maintenance/
+    version: "{{ shifumi_maintenance_version }}"
+    force: yes
+
+- name: "Create symbolic link"
+  file:
+    src: "/var/maintenance/"
+    dest: "/var/www/maintenance"
+    state: link

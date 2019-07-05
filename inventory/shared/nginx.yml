@@ -2,7 +2,7 @@
 # nginx_user: "nginx"
 nginx_vhosts:
   - listen: "80"
-    server_name: "default"
+    server_name: "01-default"
     extra_parameters: |
           # hide nginx version
           server_tokens off;

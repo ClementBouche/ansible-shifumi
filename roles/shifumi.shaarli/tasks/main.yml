@@ -24,7 +24,7 @@
     dest: /var/www
     remote_src: yes
 
-## TODO change /var/www/Shaarli ownership to www-data
+## change /var/www/Shaarli ownership to www-data
 - name: Change file ownership, group and permissions
   file:
     path: /var/www/Shaarli

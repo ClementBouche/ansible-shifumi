@@ -1,0 +1,3 @@
+# shared variables
+shifumi_maintenance_repo: https://github.com/ClementBouche/shifumi-maintenance.git
+shifumi_maintenance_version: v1.0.0
