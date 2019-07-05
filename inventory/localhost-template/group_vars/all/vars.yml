@@ -1,2 +1,3 @@
-shifumi_api_version: v0.0.1
-shifumi_app_version: v0.0.2
+shifumi_api_version: v1.0.6
+shifumi_app_version: v1.1.5
+pm2_user: cbouche
