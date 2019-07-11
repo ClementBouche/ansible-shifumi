@@ -2,16 +2,20 @@
 # nginx_user: "nginx"
 nginx_vhosts:
   - listen: "80"
+    filename: "00-cbouche.me.conf"
     server_name: "cbouche.me *.cbouche.me"
+    access_log: "/var/log/nginx/cbouche.access.log"
+    error_log: "/var/log/nginx/cbouche.error.log"
     extra_parameters: |
           # hide nginx version
           server_tokens off;
 
-          if ($host = maintenance.cbouche.me) {
-              return 301 https://$host$request_uri;
+          # redirection to maintenance
+          if ($host = cbouche.me) {
+              return 301 https://maintenance.cbouche.me$request_uri;
           }
 
-          if ($host = shifumi.cbouche.me) {
+          if ($host = maintenance.cbouche.me) {
               return 301 https://$host$request_uri;
           }
 
@@ -19,18 +23,41 @@ nginx_vhosts:
               return 301 https://$host$request_uri;
           }
 
-          if ($host = api.cbouche.me) {
+          if ($host = shifumi.cbouche.me) {
               return 301 https://$host$request_uri;
           }
 
-          # redirection to maintenance
-          if ($host = cbouche.me) {
-              return 301 https://maintenance.cbouche.me$request_uri;
+          if ($host = api.cbouche.me) {
+              return 301 https://$host$request_uri;
           }
 
           return 404; # managed by Certbot
 
   - listen: "443 ssl"
+    filename: "01-maintenance.cbouche.me.conf"
+    server_name: "maintenance.cbouche.me"
+    root: "/var/www/maintenance"
+    index: "index.html"
+    access_log: "/var/log/nginx/maintenance.access.log"
+    error_log: "/var/log/nginx/maintenance.error.log"
+    extra_parameters: |
+          # hide nginx version
+          server_tokens off;
+
+          # angular application build
+          location / {
+            try_files $uri $uri/ /index.html;
+          }
+
+          # certificate information
+          # managed by Certbot
+          ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;
+          ssl_certificate_key /etc/letsencrypt/live/cbouche.me/privkey.pem;
+          include             /etc/letsencrypt/options-ssl-nginx.conf;
+          ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
+
+  - listen: "443 ssl"
+    filename: "02-shaarli.cbouche.me"
     server_name: "shaarli.cbouche.me"
     root: "/var/www/Shaarli"
     index: "index.php"
@@ -62,6 +89,30 @@ nginx_vhosts:
           ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
 
   - listen: "443 ssl"
+    filename: "03-shifumi.cbouche.me"
+    server_name: "shifumi.cbouche.me"
+    root: "/var/www/shifumi"
+    index: "index.html"
+    access_log: "/var/log/nginx/shifumi.access.log"
+    error_log: "/var/log/nginx/shifumi.error.log"
+    extra_parameters: |
+          # hide nginx version
+          server_tokens off;
+
+          # angular application build
+          location / {
+            try_files $uri $uri/ /index.html;
+          }
+
+          # certificate information
+          # managed by Certbot
+          ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;
+          ssl_certificate_key /etc/letsencrypt/live/cbouche.me/privkey.pem;
+          include             /etc/letsencrypt/options-ssl-nginx.conf;
+          ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
+
+  - listen: "443 ssl"
+    filename: "04-api.cbouche.me"
     server_name: "api.cbouche.me"
     access_log: "/var/log/nginx/api.access.log"
     error_log: "/var/log/nginx/api.error.log"
@@ -79,50 +130,6 @@ nginx_vhosts:
             proxy_redirect http://127.0.0.1:3000/ https://api.cbouche.me/;
             proxy_read_timeout 240s;
             proxy_cache_bypass $http_upgrade;
-          }
-
-          # certificate information
-          # managed by Certbot
-          ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/cbouche.me/privkey.pem;
-          include             /etc/letsencrypt/options-ssl-nginx.conf;
-          ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
-
-  - listen: "443 ssl"
-    server_name: "maintenance.cbouche.me"
-    root: "/var/www/maintenance"
-    index: "index.html"
-    access_log: "/var/log/nginx/maintenance.access.log"
-    error_log: "/var/log/nginx/maintenance.error.log"
-    extra_parameters: |
-          # hide nginx version
-          server_tokens off;
-
-          # angular application build
-          location / {
-            try_files $uri $uri/ /index.html;
-          }
-
-          # certificate information
-          # managed by Certbot
-          ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/cbouche.me/privkey.pem;
-          include             /etc/letsencrypt/options-ssl-nginx.conf;
-          ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
-
-  - listen: "443 ssl"
-    server_name: "shifumi.cbouche.me"
-    root: "/var/www/shifumi"
-    index: "index.html"
-    access_log: "/var/log/nginx/shifumi.access.log"
-    error_log: "/var/log/nginx/shifumi.error.log"
-    extra_parameters: |
-          # hide nginx version
-          server_tokens off;
-
-          # angular application build
-          location / {
-            try_files $uri $uri/ /index.html;
           }
 
           # certificate information
