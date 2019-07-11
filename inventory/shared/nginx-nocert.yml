@@ -8,29 +8,29 @@ nginx_vhosts:
           server_tokens off;
 
           if ($host = maintenance.cbouche.me) {
-              return 301 https://$host$request_uri;
+              return 301 http://$host$request_uri;
           }
 
           if ($host = shifumi.cbouche.me) {
-              return 301 https://$host$request_uri;
+              return 301 http://$host$request_uri;
           }
 
           if ($host = shaarli.cbouche.me) {
-              return 301 https://$host$request_uri;
+              return 301 http://$host$request_uri;
           }
 
           if ($host = api.cbouche.me) {
-              return 301 https://$host$request_uri;
+              return 301 http://$host$request_uri;
           }
 
           # redirection to maintenance
           if ($host = cbouche.me) {
-              return 301 https://maintenance.cbouche.me$request_uri;
+              return 301 http://maintenance.cbouche.me$request_uri;
           }
 
           return 404; # managed by Certbot
 
-  - listen: "443 ssl"
+  - listen: "80"
     server_name: "shaarli.cbouche.me"
     root: "/var/www/Shaarli"
     index: "index.php"
@@ -54,14 +54,7 @@ nginx_vhosts:
             include fastcgi_params;
           }
 
-          # certificate information
-          # managed by Certbot
-          ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/cbouche.me/privkey.pem;
-          include             /etc/letsencrypt/options-ssl-nginx.conf;
-          ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
-
-  - listen: "443 ssl"
+  - listen: "80"
     server_name: "api.cbouche.me"
     access_log: "/var/log/nginx/api.access.log"
     error_log: "/var/log/nginx/api.error.log"
@@ -81,14 +74,7 @@ nginx_vhosts:
             proxy_cache_bypass $http_upgrade;
           }
 
-          # certificate information
-          # managed by Certbot
-          ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/cbouche.me/privkey.pem;
-          include             /etc/letsencrypt/options-ssl-nginx.conf;
-          ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
-
-  - listen: "443 ssl"
+  - listen: "80"
     server_name: "maintenance.cbouche.me"
     root: "/var/www/maintenance"
     index: "index.html"
@@ -103,14 +89,7 @@ nginx_vhosts:
             try_files $uri $uri/ /index.html;
           }
 
-          # certificate information
-          # managed by Certbot
-          ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/cbouche.me/privkey.pem;
-          include             /etc/letsencrypt/options-ssl-nginx.conf;
-          ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
-
-  - listen: "443 ssl"
+  - listen: "80"
     server_name: "shifumi.cbouche.me"
     root: "/var/www/shifumi"
     index: "index.html"
@@ -124,10 +103,3 @@ nginx_vhosts:
           location / {
             try_files $uri $uri/ /index.html;
           }
-
-          # certificate information
-          # managed by Certbot
-          ssl_certificate     /etc/letsencrypt/live/cbouche.me/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/cbouche.me/privkey.pem;
-          include             /etc/letsencrypt/options-ssl-nginx.conf;
-          ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;

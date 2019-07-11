@@ -21,6 +21,8 @@
     - inventory/shared/certbot.yml
     - inventory/shared/fail2ban.yml
     - inventory/shared/nginx.yml
+    # - inventory/shared/nginx-http.yml
+    # - inventory/shared/nginx-nocert.yml
     - inventory/shared/nodejs.yml
     - inventory/shared/php.yml
     - inventory/shared/pm2.yml
