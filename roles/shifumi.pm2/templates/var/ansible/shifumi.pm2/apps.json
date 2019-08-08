@@ -4,6 +4,11 @@
         "name": "api",
         "cwd": "/var/www/shifumi-api/",
         "script": "/var/www/shifumi-api/server.js"
+    },
+    {
+      "name": "socket",
+      "cwd": "/var/www/shifumi-socket/",
+      "script": "/var/www/shifumi-socket/src/app.js"
     }
   ]
 }

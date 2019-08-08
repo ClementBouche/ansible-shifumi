@@ -1,0 +1,22 @@
+---
+
+#-------------------------------------------------------------------------------
+# Socket
+#-------------------------------------------------------------------------------
+
+- debug: 
+    msg: Start shifumi socket install/update
+
+- name: "Install shifumi-socket version {{ shifumi_socket_version }}"
+  git:
+    repo: "{{ shifumi_socket_repo }}"
+    dest: /var/www/shifumi-socket
+    version: "{{ shifumi_socket_version }}"
+    force: yes
+
+- name: "npm install"
+  npm:
+    path: /var/www/shifumi-socket
+
+- name: "Restart PM2"
+  shell: "pm2 restart all"
