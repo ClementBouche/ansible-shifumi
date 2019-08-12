@@ -1,4 +1,4 @@
-shifumi_socket_version: v1.0.0
-shifumi_api_version: v1.0.7
-shifumi_app_version: v1.2.0
+shifumi_socket_version: v1.0.1
+shifumi_api_version: v1.0.9
+shifumi_app_version: v1.2.2
 pm2_user: cbouche
